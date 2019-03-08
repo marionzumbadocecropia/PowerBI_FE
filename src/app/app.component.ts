@@ -52,15 +52,15 @@ export class AppComponent implements OnInit {
     );
     this.powerbiService.getReportById(reportId).subscribe(
       data => {
-        const embedConfig = this.buildEmbedConfigReport(data);
+        const embedConfig = this.buildEmbedConfig(data, 'report');
         powerbi.reset(this.pbiContainerElement);
         powerbi.embed(this.pbiContainerElement, embedConfig);
       });
   }
 
-  private buildEmbedConfigReport(data: EmbedInfo) {
+  private buildEmbedConfig(data: EmbedInfo, type: string) {// to embed reports and dashboards
     return <pbi.IEmbedConfiguration>{
-      type: 'report',
+      type: type,
       tokenType: pbi.models.TokenType.Embed,
       embedUrl: data.EmbedUrl,
       accessToken: data.EmbedToken.Token,
@@ -80,24 +80,10 @@ export class AppComponent implements OnInit {
     );
     this.powerbiService.getDashboardById(dashboardId).subscribe(
       data => {
-        const embedConfig = this.buildEmbedConfigDashboard(data);
+        const embedConfig = this.buildEmbedConfig(data, 'dashboard');
         powerbi.reset(this.pbiContainerElement);
         powerbi.embed(this.pbiContainerElement, embedConfig);
       });
-  }
-
-  private buildEmbedConfigDashboard(data: EmbedInfo) {
-    return <pbi.IEmbedConfiguration>{
-      type: 'dashboard',
-      tokenType: pbi.models.TokenType.Embed,
-      embedUrl: data.EmbedUrl,
-      accessToken: data.EmbedToken.Token,
-      id: data.Id,
-      settings: {
-        filterPaneEnabled: false,
-        navContentPaneEnabled: false
-      }
-    };
   }
 
   embedTile(tileId: string, dashboardId: string) {

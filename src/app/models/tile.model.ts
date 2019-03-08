@@ -1,8 +1,8 @@
 export interface Tile {// to display the tiles in the list
     Id: string;
-    Name: string;
+    Title: string;
     WebUrl: string;
     EmbedUrl: string;
     DatasetId: string;
-    DashboardId: string;
+    ReportId: string;
 }

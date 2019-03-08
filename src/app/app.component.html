@@ -12,7 +12,7 @@
 <div>
     <h3>My Dashboards</h3>
     <ul>
-        <li *ngFor="let dashboard of myDashboards">{{dashboard.Name}}
+        <li *ngFor="let dashboard of myDashboards">{{dashboard.DisplayName}}
             <button type="button" class="btn btn-outline-light" (click)="embedDashboard(dashboard.Id)">{{dashboard.DisplayName}}</button>
         </li>
     </ul>
@@ -20,7 +20,7 @@
 <div>
     <h3>My Tiles</h3>
     <ul>
-        <li *ngFor="let tile of myTiles">{{tile.Name}}
+        <li *ngFor="let tile of myTiles">{{tile.Title}}
             <button type="button" class="btn btn-outline-light" (click)="embedTile(tile.Id, tile.ReportId)">{{tile.Title}}</button>
         </li>
     </ul>
